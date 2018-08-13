@@ -1,5 +1,9 @@
 <?php
+  session_start();
+?>
+<?php
 include 'db/db_connect.php';
+include 'db/db_functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,13 +65,14 @@ include 'db/db_connect.php';
       </div>
     </nav>
     
-<div class="container pt-5 mt-5">
-<ul>
-    <li><?php echo $_POST["email-reg"]; ?> </li>
-    <li><?php echo $_POST["pass-reg"]; ?> </li>
-    <li><?php echo $_POST["firstName-reg"]; ?> </li>
-    <li><?php echo $_POST["lastName-reg"]; ?> </li>
 
+
+    
+    <?php newUser($_POST["email-reg"],$_POST["pass-reg"],$_POST["firstName-reg"],$_POST["lastName-reg"]); ?>
+
+<div class="container pt-5 mt-5">
+<h1 class="row">THANKS FOR REGISTERING</h1>
+<a class="row" href="login.php">LOGIN NOW</a>
 </div>
 </body>
 </html> 
