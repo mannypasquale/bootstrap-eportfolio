@@ -68,11 +68,22 @@ include 'db/db_functions.php';
 
 
     
-    <?php newUser($_POST["email-reg"],$_POST["pass-reg"],$_POST["firstName-reg"],$_POST["lastName-reg"]); ?>
+    <?php 
+      if (oldUser($conn, $_POST["email-reg"]) == true){ ?>
+        <div class="container pt-5 mt-5">
+          <h1 class="row">Email Already in use</h1>
+          <a class="row" href="register.php">Register with different email?</a>
+          <a class="row" href="login.php">login with existing email?</a>
+        </div>
+      <?php } else { ?>
+        <?php  newUser($conn, $_POST["email-reg"],$_POST["pass-reg"],$_POST["firstName-reg"],$_POST["lastName-reg"]); ?>
 
-<div class="container pt-5 mt-5">
-<h1 class="row">THANKS FOR REGISTERING</h1>
-<a class="row" href="login.php">LOGIN NOW</a>
-</div>
+        <div class="container pt-5 mt-5">
+        <h1 class="row">Thanks for registering</h1>
+        <a class="row" href="login.php">Login?</a>
+      </div>
+      <?php } ?>
+
+
 </body>
 </html> 
